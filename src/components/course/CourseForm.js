@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
+
 const CourseForm = ({course, allAuthors, onSave, onChange, loading, errors}) => {
   return (
     <form>
@@ -21,18 +22,38 @@ const CourseForm = ({course, allAuthors, onSave, onChange, loading, errors}) => 
           onChange={onChange}
           error={errors.authorId} />
 
+        <TextInput
+          name="category"
+          label="Category"
+          value={course.category}
+          onChange={onChange}
+          error={errors.category} />
+
+        <TextInput
+          name="length"
+          label="Length"
+          value={course.length}
+          onChange={onChange}
+          error={errors.length} />
+
+        <input
+          type="submit"
+          disabled={loading}
+          value={loading? "Saving..." : "Save"}
+          className="btn btn-primary"
+          onClick={onSave} />
     </form>
   );
 };
 
 CourseForm.propTypes = {
-  course: PropTypes.string.isRequired,
-  allAuthors: PropTypes.array.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onSave: PropTypes.func.isRequired,
+  course: PropTypes.object.isRequired,
+  allAuthors: PropTypes.array,
+  onChange: PropTypes.func,
+  onSave: PropTypes.func,
   placeholder: PropTypes.string,
-  loading: PropTypes.string,
-  errors: PropTypes.array
+  loading: PropTypes.bool,
+  errors: PropTypes.object
 };
 
 export default CourseForm;
