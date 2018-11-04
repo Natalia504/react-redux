@@ -17,7 +17,7 @@ class CoursesPage extends React.Component{
   }
 
   redirectToAddCoursePage(){
-    browserHistory.push('./course');
+    browserHistory.push('/course');
   }
 
   render(){
